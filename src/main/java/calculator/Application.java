@@ -12,6 +12,11 @@ public class Application {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
 
+        if (input.isEmpty()) {
+            System.out.println("결과 : 0");
+            return;
+        }
+
         if (input.startsWith("//")) {
             // 문자열 앞부분의 "//"을 제거한 후, "\n" 이전에 오는 문자를 구분자로 지정
             String truncatedStr = input.substring(2);
@@ -31,6 +36,9 @@ public class Application {
         float result = 0.0f;
 
         for (String elem : split) {
+            if (elem.isEmpty()) {
+                throw new IllegalArgumentException("구분자는 연속되어 사용할 수 없습니다.");
+            }
             try {
                 float temp = Float.parseFloat(elem);
                 if (temp >= 0.0f) {

@@ -1,13 +1,11 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class Application {
     public static void main(String[] args) {
-        HashMap<Character, Boolean> separatorChar = new HashMap<Character, Boolean>();
-        separatorChar.put(',', true);
-        separatorChar.put(':', true);
+        String separators = "[:,]";
 
         System.out.println("덧셈할 문자열을 입력해 주세요.");
 
@@ -18,10 +16,15 @@ public class Application {
             if(newSeparator.length() != 1){
                 System.out.println("Error");
             }else{
-                separatorChar.put(newSeparator.charAt(0), true);
+                // separators = separators + newSeparator.charAt(0);
+                separators = "[:,]" + "|" + Pattern.quote(newSeparator);
                 input = Console.readLine();
             }
         }
         System.out.println(input);
+        String[] split = input.split(separators);
+        for (String elem : split) {
+            System.out.println(elem);
+        }
     }
 }

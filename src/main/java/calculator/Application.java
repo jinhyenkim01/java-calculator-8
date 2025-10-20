@@ -25,7 +25,11 @@ public class Application {
                 throw new IllegalArgumentException("// 로 시작하는 문자열은 // 이후 정확히 1개의 문자가 와야 합니다.");
             } else if (Character.isDigit(newSeparator[0].charAt(0))) {
                 throw new IllegalArgumentException("0~9의 숫자는 구분자로 사용될 수 없습니다.");
-            } else {
+            } else if (newSeparator.length != 2) {
+                System.out.println("결과 : 0");
+                return;
+            }
+            else {
                 separators = "[:,]" + "|" + Pattern.quote(newSeparator[0]);
                 input = newSeparator[1];
             }
@@ -41,7 +45,7 @@ public class Application {
             }
             try {
                 float temp = Float.parseFloat(elem);
-                if (temp >= 0.0f) {
+                if (temp > 0.0f) {
                     result = result + temp;
                 } else {
                     throw new IllegalArgumentException("구분자 사이의 문자는 음수일 수 없습니다.");

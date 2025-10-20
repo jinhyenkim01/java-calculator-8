@@ -13,6 +13,15 @@ public class Application {
 
         String input = Console.readLine();
 
+        if(input.startsWith("//")){
+            String newSeparator = input.substring(2);
+            if(newSeparator.length() != 1){
+                System.out.println("Error");
+            }else{
+                separatorChar.put(newSeparator.charAt(0), true);
+                input = Console.readLine();
+            }
+        }
         System.out.println(input);
     }
 }

@@ -16,15 +16,29 @@ public class Application {
             if(newSeparator.length() != 1){
                 System.out.println("Error");
             }else{
-                // separators = separators + newSeparator.charAt(0);
                 separators = "[:,]" + "|" + Pattern.quote(newSeparator);
                 input = Console.readLine();
             }
         }
-        System.out.println(input);
+        //System.out.println(input);
         String[] split = input.split(separators);
+
+        float result = 0.0f;
+
         for (String elem : split) {
-            System.out.println(elem);
+            try {
+                float temp = Float.parseFloat(elem);
+                result = result + temp;
+            } catch (NumberFormatException e) {
+                System.out.println("Error");
+            }
+        }
+
+        int intResult = (int) result;
+        if(result == intResult){
+            System.out.println("결과 : " + intResult);
+        }else{
+            System.out.println("결과 : " + result);
         }
     }
 }
